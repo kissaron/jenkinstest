@@ -4,17 +4,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                 bat "mvn -Dmaven.test.failure.ignore=true  clean compile"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                  bat "mvn -Dmaven.test.failure.ignore=true test "
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                bat "mvn -Dmaven.test.failure.ignore=true  install"
             }
         }
     }
